@@ -2,7 +2,7 @@
 
 A web tool that audits any URL and returns a detailed page report — including HTTP status, response time, SEO metadata, heading structure, image accessibility checks, and word count.
 
-**Live demo:** [https://page-pulse.onrender.com](https://page-pulse.onrender.com)
+**Live demo:** [https://page-pulse-tgcn.onrender.com](https://page-pulse-tgcn.onrender.com)
 
 ---
 
@@ -147,21 +147,21 @@ The UI is intentionally built with plain HTML, CSS, and JavaScript:
    - **Plan:** Free
 5. Click **Create Web Service**
 
-Render will auto-deploy. Your URL will be: `https://page-pulse.onrender.com`
+Render will auto-deploy. Your URL will be: `https://page-pulse-tgcn.onrender.com`
 
 > ⚠️ The free tier spins down after 15 minutes of inactivity. The first request after idle may take ~30s to wake up.
 
 ### Using the Live API
 
 ```bash
-curl -X POST https://page-pulse.onrender.com/api/audit \
+curl -X POST https://page-pulse-tgcn.onrender.com/api/audit \
   -H "Content-Type: application/json" \
   -d '{"url":"https://example.com"}'
 ```
 
 ## Loom Demo
 
-[▶️ Watch a walkthrough of Page Pulse](https://www.loom.com) *(placeholder — insert your Loom link here)*
+[▶️ Watch a walkthrough of Page Pulse](https://www.loom.com) *(https://www.loom.com/share/fb714ffb1b2e4112823a7b3c934d1d2c)*
 
 ## Project Structure
 
