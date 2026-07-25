@@ -1,6 +1,6 @@
 const express = require('express');
 const axios = require('axios');
-const cheerio = require('cheerio');
+const { parseHtml } = require('./src/parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -57,44 +57,14 @@ app.post('/api/audit', async (req, res) => {
     }
 
     const html = response.data;
-    const $ = cheerio.load(html);
+    // Delegate HTML parsing to the testable parser module
+    const parsedData = parseHtml(html, normalizedUrl);
 
-    // 5. Extract page information
-    const title = $('title').first().text().trim() || null;
-
-    const metaDescription = $('meta[name="description"]').attr('content') || null;
-
-    const h1Count = $('h1').length;
-
-    const imagesMissingAlt = [];
-    $('img').each((i, el) => {
-      const src = $(el).attr('src');
-      const alt = $(el).attr('alt');
-      if (!alt || alt.trim() === '') {
-        imagesMissingAlt.push(src || '(no src attribute)');
-      }
-    });
-
-    // 6. Approximate word count (strip tags, get text content)
-    const textContent = $('body').text();
-    const words = textContent
-      .replace(/[\s]+/g, ' ')
-      .trim()
-      .split(' ')
-      .filter(w => w.length > 0);
-    const wordCount = words.length;
-
-    // 7. Build the report
+    // 7. Build the report — merge parsed data with fetch metadata
     const report = {
-      url: normalizedUrl,
+      ...parsedData,
       status: response.status,
       responseTime,
-      title,
-      metaDescription,
-      h1Count,
-      imagesMissingAlt,
-      imagesMissingAltCount: imagesMissingAlt.length,
-      wordCount,
     };
 
     return res.json(report);
@@ -146,4 +116,3 @@ app.post('/api/audit', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Page Pulse server running on http://localhost:${PORT}`);
 });
-
