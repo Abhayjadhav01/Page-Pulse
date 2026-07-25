@@ -1,11 +1,12 @@
 {
   "name": "page-pulse",
   "version": "1.0.0",
-  "description": "A web tool that audits any URL and returns a detailed report.",
+  "description": "A web tool that audits any URL and returns a detailed page report.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "test": "jest"
   },
   "keywords": ["url-audit", "seo", "page-analyzer"],
   "license": "MIT",
@@ -13,6 +14,8 @@
     "axios": "^1.7.0",
     "cheerio": "^1.0.0",
     "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
-
