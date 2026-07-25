@@ -348,6 +348,11 @@ footer {
   color: var(--error);
 }
 
+/* Ensure the hidden attribute overrides any display property (fixes bug where .error-box { display: flex } overrides [hidden]) */
+[hidden] {
+  display: none !important;
+}
+
 /* Responsive */
 @media (max-width: 500px) {
   .container {

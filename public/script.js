@@ -110,7 +110,10 @@
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
+
+    // Reset all previous state before any new request (requirement #4)
     hideError();
+    reportSection.hidden = true;
 
     const rawUrl = urlInput.value.trim();
     if (!rawUrl) {
